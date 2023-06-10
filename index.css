@@ -1,0 +1,52 @@
+.container-fluid {
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  .navbar {
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .nav-item {
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius: 10%;
+  }
+  .nav-link {
+    color: rgb(14, 234, 83);
+  }
+  .upper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 56px);
+    margin-top: -56px;
+    position: relative;
+  }
+  .upper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .slideshow-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    padding: 10px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  .slideshow-btn-left {
+    left: 10px;
+  }
+  .slideshow-btn-right {
+    right: 10px;
+  }
+  body {
+    margin: 0;
+  }

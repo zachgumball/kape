@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css">
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Source+Sans+Pro&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+      .container-fluid{
+        background-color: rgb(9, 104, 42);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+      .nav-item {
+        margin-right: 20px;
+        margin-left: 20px;
+        border-radius: 5%;
+        font-size: large;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .nav-link {
+        display: flex;
+        color: rgb(14, 234, 83);
+        margin-right: 30px;
+        margin-left: 30px;
+      }
+
+      .upper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 50px);
+        position: relative;
+        z-index: 0;
+      }
+
+      .upper img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+      }
+
+      .slideshow-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        padding: 10px;
+        border: none;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+      .slideshow-btn-left {
+        left: 10px;
+      }
+      .slideshow-btn-right {
+        right: 10px;
+      }
+      body {
+        margin-top : 56px;
+        margin-left: 15px;
+        margin-right: 15px;
+        background-image: url(background.webp);
+        background-size: cover;
+        background-attachment: fixed;
+      }
+
+      .mid-text{
+        align-items: center;
+        color: rgb(19, 249, 92);
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .sambutan-container{
+        background-color: rgb(35,164,85);
+        border-radius: 5px;
+      }
+      .row{
+        color: aliceblue;
+      }
+      .paragraph{
+        margin-top: 20px;
+        margin-left: 50px;
+        font-size: large;
+        font-weight: 100;
+        font-family: 'Source Sans Pro', sans-serif;
+      }
+      #slideshow-image{
+        border-radius: 5px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+      #slideshow-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to top, rgba(19, 15, 15, 0.7), transparent);
+        border-radius: 5px;
+      }
+      .sambutan{
+        color: black;
+        text-align: right;
+        font-weight: 20px;
+        margin-top: 20px;
+      }
+      .sambutan2{
+        color: rgb(216, 244, 3);
+        text-align: end;
+        margin: -10px;
+        font-family: 'Kalam', cursive;;
+      }
+      .row .align-right {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .row .align-right hr {
+        width: 50%;
+        color: black;
+        border-bottom: 5px solid black;
+      }
+      .data-pondok{
+        background-color: rgb(255,203,35);
+        margin-right: 100px;
+        border-radius: 5px;
+        margin-left: 50px;
+        text-align: center;
+        margin-top: 30px;
+        margin-bottom: 25px;
+        transition: transform 0.3s;
+      }
+      .data-pondok:hover {
+        transform: scale(1.1);
+      }
+      .data-pondok h1{
+        font-weight: 25px;
+        font-family: 'Kalam', cursive;
+        margin-top: 5px;
+      }
+      .data-pondok h3{
+        margin-top: -40px;
+        padding-bottom: 5px;
+        color: green;
+      }
+      .row img {
+        width: 100%;
+        background-size: cover;
+        transition: transform 0.3s;
+      }
+      .video {
+        width: 100%;
+        height: 550px;
+        color: aliceblue;
+        background-color: rgba(178, 172, 172, 0.5);
+        position: relative;
+        overflow: hidden;
+        border-radius: 5px;
+      }
+      .video h1{
+        margin-top: 235px;
+        margin-left: 100px;
+        font-family: 'Kalam', cursive;;
+      }
+      .video img{
+        width: 100px;
+        height: 100px;
+        margin-top: 220px;
+        transition: transform 0.3s;
+      }
+      .video img:hover {
+        transform: scale(1.1);
+      }
+      .video figcaption{
+        display: inline-block;
+        font-family: 'Kalam', cursive;
+      }
+      .sticky-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .video::before,
+      .video::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100px;
+        background-color: rgba(7, 146, 12, 0.61);
+        border-radius: 50%;
+        bottom: -50px;
+        animation-duration: 5s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+      }
+
+      .video::before {
+        top: -50px;
+        animation-name: curveAnimationTop;
+      }
+
+      .video::after {
+        bottom: -50px;
+        animation-name: curveAnimationBottom;
+      }
+
+      @keyframes curveAnimationTop {
+        0% {
+          transform: translateX(-100%);
+        }
+        50% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      @keyframes curveAnimationBottom {
+        0% {
+          transform: translateX(100%);
+        }
+        50% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
+      }  
+      .hall{
+        background-color: rgba(7, 146, 12, 0.61);
+      }
+
+      .footer{
+        background-color:black;
+        border-radius: 5px;
+        
+      }
+      .footer-divider {
+        border-color: #ccc;
+        border-width: 1px 0 0 0;
+      }
+      .white-box {
+        width: 270px;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        color: black;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .transparent-column{
+        background-color: transparent;
+        font-family: 'Kalam', cursive;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        color: aliceblue;
+      }
+      .bg-body-tertiary{
+        background-color: rgb(17, 75, 38) !important;
+        border-radius: 10px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);;
+      }
+      .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: -45px;
+        margin-bottom: 10px;
+        background-size: 70%;
+        font-family: 'Kalam', cursive;
+      }
+      .logo h1{
+        margin-top: 10px;
+        font-size: 50px;
+      }
+      .footer{
+        background-image: url(footer_bg.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      
+      .footer-title{
+        margin-top: 20px;
+      }
+      .footer-list {
+        list-style-type: none;
+        padding-left: 0;
+      }
+
+      .footer-list li {
+        display: flex;
+        align-items: flex-start;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+      }
+
+      .footer-list li:before {
+        content: "";
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: orange;
+      }
+
+      .footer-list li:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        left: 5px;
+        width: 1px;
+        height: 35px;
+        background-color: orange;
+      }
+
+      .footer-list li:last-child:after {
+        display: none;
+      }
+      .footer-item {
+        display: flex;
+        align-items: center;
+      }
+
+      .footer-item svg {
+        margin-right: 10px;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <img src="logo_yayasan.png" alt="logo yayasan">
+      <h1>YAYASAN TUNAS INSAN MULIA</h1>
+    </div>
+    <nav class="navbar navbar-expand-lg sticky-nav bg-body-tertiary">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Daftar</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="upper">
+      <img id="slideshow-image" src="g2.jpg" alt="image-upper">
+      <button class="slideshow-btn slideshow-btn-left" onclick="changeImage(-1)">&lt;</button>
+      <button class="slideshow-btn slideshow-btn-right" onclick="changeImage(1)">&gt;</button>
+    </div>
+    <div class="mid-text">
+        <h1>بِسْــــــــــــــــــمِ اﷲِالرَّحْمَنِ اارَّحِيم</h1>
+    </div>
+    <script>
+      var imageIndex = 0;
+      var images = [
+        'g2.jpg',
+        'g1.jpg',
+        'g3.jpg',
+        'g4.jpg',
+        'g5.jpg',
+        'g6.jpg',
+        'g7.jpg',
+        'g8.jpg',
+      ];
+
+      function changeImage(direction) {
+        var imgElement = document.getElementById('slideshow-image');
+        imgElement.style.transform = direction > 0 ? 'translateX(-100%)' : 'translateX(100%)';
+        imgElement.addEventListener('transitionend', function() {
+          imageIndex += direction;
+          if (imageIndex < 0) {
+            imageIndex = images.length - 1;
+          } else if (imageIndex >= images.length) {
+            imageIndex = 0;
+          }
+          imgElement.src = images[imageIndex];
+          imgElement.style.transform = 'translateX(0)';
+        }, { once: true });
+      }
+
+      setInterval(function () {
+        changeImage(1);
+      }, 5000);
+    </script>
+    <div class="sambutan-container">
+      <div class="row">
+        <div class="col-md-4">
+          <i><p class="paragraph">Bismillahirrahmanirrahim</p></i>
+          <i><p class="paragraph">Assalamu’alaikum warahmatullahi wabarakatuh</p></i>
+          <p class="paragraph">Segala puji kepada Allah Swt. yang telah menganugerahkan segala kemampuan dan keahlian kepada umat manusia, khususnya bidang teknologi informasi. Shalawat beserta salam sama-sama kita haturkan kepada pangkuan alam Nabi Besar Muhammad SAW, Sang motivator terbaik sepanjang masa.</p>
+          <p class="paragraph">Selamat datang di website Pesantren Modern. Melalui platform ini kami ingin menyapa dunia dan mengabarkan sejumlah info up to date seputar dunia pesantren, khususnya sejumlah kegiatan di pesantren kami.
+          Keterbukaan informasi di era industri 4.0 adalah keniscayaan dan menjadi hak setiap orang dengan mudah mengakses setiap informasi publik, khususnya informasi proses pendidikan di pesantren.</p>
+        </div>
+        <div class="col-md-4">
+          <h3 class="sambutan">Sambutan Pimpinan Pesantren</h3>
+          <div class="row align-right">
+            <hr>
+          </div>
+          <h3 class="sambutan2">Bang Her</h3>
+          <img src="pimpinan-img.png" alt="pimpinan">
+        </div>
+        <div class="col-md-4">
+          <div class="data-pondok">
+            <h1>35</h1><br>
+            <h3>Jumlah Santri</h3>
+          </div>
+          <div class="data-pondok">
+            <h1>10</h1><br>
+            <h3>Tahfiz</h3>
+          </div>
+          <div class="data-pondok">
+            <h1>3</h1><br>
+            <h3>Lembaga</h3>
+          </div>
+          <div class="data-pondok">
+            <h1>4</h1><br>
+            <h3>Ekstrakulikuler</h3>
+          </div>
+          <div class="data-pondok">
+            <h1>4</h1><br>
+            <h3>Gedung</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="video wave">
+      <div class="row">
+          <div class="col-md-6">
+              <h1 class="text-left">Ke Insan Mulia? Apa saja yang akan Kamu dapatkan?</h1><br>
+          </div>
+          <div class="col-md-6 d-flex justify-content-center align-items-center">
+              <div>
+                  <img src="https://cdn-icons-png.flaticon.com/512/1103/1103718.png" alt="play" data-toggle="modal" data-target="#videoModal" onclick="playVideo()">
+                  <p style="font-family:  'Kalam', cursive;;">Putar video ini</p>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="videoModalLabel">Judul Video</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/-JGjusZhREI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="hall">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 ">
+          <div class="white-box transparent-column">
+            <h1>Ada berita apa saja?</h1>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="white-box">Column 2</div>
+        </div>
+        <div class="col-md-3">
+          <div class="white-box">Column 3</div>
+        </div>
+        <div class="col-md-3">
+          <div class="white-box">Column 7</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="white-box">Column 5</div>
+        </div>
+        <div class="col-md-3">
+          <div class="white-box">Column 6</div>
+        </div>
+        <div class="col-md-3">
+          <div class="white-box">Column 7</div>
+        </div>
+        <div class="col-md-3">
+          <div class="white-box">Column 7</div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="footer-title" style="color: aquamarine;">YAYASAN TUNAS INSAN MULIA</h4>
+          <hr class="footer-divider">
+          <p class="footer-text">Yayasan Tunas Insan Mulia didirikan oleh Bapak Marceli Irawan pada tahun 2015. Sejak masih kuliah pada tahun 2010, Bapak Marceli telah aktif dalam mengasuh anak-anak yatim. Melihat jumlah anak yatim yang semakin bertambah, ia merasa perlunya mendirikan sebuah lembaga yang dapat memberikan perhatian dan bantuan yang lebih luas. Inilah awal mula terbentuknya Yayasan Tunas Insan Mulia.
+          </p>
+        </div>
+        <div class="col-md-3">
+          <h4 class="footer-title">QUICK LINK</h4>
+          <hr class="footer-divider">
+          <ul class="footer-list">
+            <li>Beranda</li>
+            <li>Pendaftaran</li>
+            <li>Kontak</li>
+            <li>About</li>
+          </ul>
+        </div>
+        
+        <div class="col-md-3">
+          <h4 class="footer-title">LEMBAGA</h4>
+          <hr class="footer-divider">
+          <ul class="footer-list">
+            <li>SMP-IT TIM</li>
+            <li>PONDOK PESANTREN</li>
+            <li>PONDOK TAHFIZ</li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h4 class="footer-title">ALAMAT</h4>
+          <hr class="footer-divider">
+          <div class="footer-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+              <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+              <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+            <span>Jl.Cinangka Raya Ciputat-Parung Gang Jambu</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+      function playVideo() {
+          var videoIframe = document.getElementById('videoIframe');
+          videoIframe.src = videoIframe.src + "?autoplay=1";
+      }
+  </script>
+  
+</body>
+</html>
