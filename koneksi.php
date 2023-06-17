@@ -16,11 +16,18 @@ $umur = $_POST['umur'];
 $no_tlp = $_POST['no_tlp'];
 $email = $_POST['email'];
 
-$sql = "INSERT INTO calon_siswa (nama, alamat, ttl, umur, no_tlp, email) VALUES ('$nama', '$alamat', '$ttl', '$umur', '$no_tlp', '$email')";
-if ($conn->query($sql) === true) {
-    echo "Form data saved successfully";
+$checkQuery = "SELECT * FROM calon_siswa WHERE nama = '$nama' AND ttl = '$ttl'";
+$result = $conn->query($checkQuery);
+
+if ($result->num_rows > 0) {
+    echo "already_registered";
 } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    $insertQuery = "INSERT INTO calon_siswa (nama, alamat, ttl, umur, no_tlp, email) VALUES ('$nama', '$alamat', '$ttl', '$umur', '$no_tlp', '$email')";
+    if ($conn->query($insertQuery) === true) {
+        echo "Form data saved successfully";
+    } else {
+        echo "Error: " . $insertQuery . "<br>" . $conn->error;
+    }
 }
 
 $conn->close();

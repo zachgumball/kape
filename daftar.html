@@ -84,6 +84,14 @@
       .visi-misi-paragraf p {
         margin: 0;
       }
+      #message{
+        color: aliceblue;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        border-radius: 10px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -101,7 +109,7 @@
               <a class="nav-link" href="tentang.html">Tentang</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="daftar.php">Pendaftaran</a>
+              <a class="nav-link" href="daftar.html">Pendaftaran</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="donasi.html">Donasi</a>
@@ -141,6 +149,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
         <p id="message" style="display: none;"></p>
+        <p id="message1" style="display: none;"></p>
       </form> 
       </div>
       <div class="container" style="background-color: rgb(35,164,85); margin-top: 10px; border-radius: 10px; justify-content: center; display: flex;flex-direction: column; font-family: 'Kalam';">
@@ -280,7 +289,13 @@
             .then(response => response.text())
             .then(data => {
                 console.log(data);
-                document.getElementById('message').textContent = 'Anda berhasil daftar.';
+                if (data === 'already_registered') {
+                    document.getElementById('message').textContent = 'Data sudah ada.';
+                    document.getElementById('message').style.backgroundColor = 'red';
+                } else {
+                    document.getElementById('message').textContent = 'Anda berhasil daftar.';
+                    document.getElementById('message').style.backgroundColor = 'rgb(12, 240, 236)';
+                }
                 document.getElementById('message').style.display = 'block';
             })
             .catch(error => {
@@ -289,5 +304,6 @@
         });
     });
 </script>
+
   </body>
 </html>
