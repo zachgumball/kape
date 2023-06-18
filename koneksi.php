@@ -15,6 +15,7 @@ $ttl = $_POST['ttl'];
 $umur = $_POST['umur'];
 $no_tlp = $_POST['no_tlp'];
 $email = $_POST['email'];
+$pendidikan_terakhir = $_POST['pendidikan_terakhir'];
 
 $checkQuery = "SELECT * FROM calon_siswa WHERE nama = '$nama' AND ttl = '$ttl'";
 $result = $conn->query($checkQuery);
@@ -22,7 +23,7 @@ $result = $conn->query($checkQuery);
 if ($result->num_rows > 0) {
     echo "already_registered";
 } else {
-    $insertQuery = "INSERT INTO calon_siswa (nama, alamat, ttl, umur, no_tlp, email) VALUES ('$nama', '$alamat', '$ttl', '$umur', '$no_tlp', '$email')";
+    $insertQuery = "INSERT INTO calon_siswa (nama, alamat, ttl, umur,pendidikan_terakhir, no_tlp, email) VALUES ('$nama', '$alamat', '$ttl', '$umur','$pendidikan_terakhir' '$no_tlp', '$email')";
     if ($conn->query($insertQuery) === true) {
         echo "Form data saved successfully";
     } else {
