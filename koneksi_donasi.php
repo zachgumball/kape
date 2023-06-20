@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -10,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
+// Retrieve the submitted form data
 $nama_donatur = $_POST['nama_donatur'];
 $alamat = $_POST['alamat'];
 $no_tlp = $_POST['no_tlp'];
@@ -20,9 +22,16 @@ $tipe_donasi = $_POST['tipe_donasi'];
 $jumlah_donasi = $_POST['jumlah_donasi'];
 $tanggal_donasi = $_POST['tanggal_donasi'];
 
-$sql = "INSERT INTO donasi (nama_donatur, alamat, no_tlp, email, donasi_untuk, tipe_donasi, jumlah_donasi, tanggal_donasi)
-        VALUES ('$nama_donatur', '$alamat', '$no_tlp', '$email', '$donasi_untuk', '$tipe_donasi', '$jumlah_donasi', '$tanggal_donasi')";
+// Retrieve and store the image
+$image = $_FILES['bukti_transfer_gambar'];
+$imagePath = 'gambar/' . $image['name'];
+move_uploaded_file($image['tmp_name'], $imagePath);
 
+// Prepare the SQL statement
+$sql = "INSERT INTO donasi (nama_donatur, alamat, no_tlp, email, donasi_untuk, tipe_donasi, jumlah_donasi, tanggal_donasi, bukti_transfer_gambar)
+        VALUES ('$nama_donatur', '$alamat', '$no_tlp', '$email', '$donasi_untuk', '$tipe_donasi', '$jumlah_donasi', '$tanggal_donasi', '$imagePath')";
+
+// Execute the SQL statement
 if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully.";
 } else {
