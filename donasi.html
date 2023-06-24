@@ -156,13 +156,17 @@
             <option value="barang">Barang</option>
           </select>
         </div>
+        <div class="mb-3" id="barang_donasi_fields" style="display: none;">
+          <label for="barang_donasi" class="form-label">Nama Barang</label>
+          <input type="text" class="form-control" id="barang_donasi" style="text-align: left;" name="barang_donasi">
+        </div>
         <div class="mb-3">
           <label for="jumlah_donasi" class="form-label">Jumlah Donasi</label>
           <input type="text" class="form-control" id="jumlah_donasi" style="text-align: left;" name="jumlah_donasi">
         </div>
         <div class="mb-3">
           <label for="tanggal_donasi" class="form-label">Tanggal Donasi</label>
-          <input type="text" class="form-control" id="tanggal_donasi" style="text-align: left;" name="tanggal_donasi">
+          <input type="text" class="form-control" id="tanggal_donasi" style="text-align: left;" name="tanggal_donasi" readonly>
         </div>
         <div class="mb-3">
           <label for="bukti_transfer_gambar" class="form-label">Upload Gambar</label>
@@ -209,15 +213,43 @@
               })
               .then(response => response.text())
               .then(data => {
-                  console.log(data);
-                  document.getElementById('message').textContent = 'Anda berhasil berdonasi, terima kasih.';
-                  document.getElementById('message').style.display = 'block';
-              })
+                console.log(data);
+                var messageElement = document.getElementById('message');
+                messageElement.textContent = 'Anda berhasil berdonasi, terima kasih.';
+
+                var additionalText = document.createElement('p');
+                additionalText.textContent = 'Terima kasih atas dukungan Anda!';
+                messageElement.appendChild(additionalText);
+
+                messageElement.style.display = 'block';
+            })
               .catch(error => {
                   console.error(error);
               });
           });
       });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var tanggalDonasiInput = document.getElementById('tanggal_donasi');
+      var currentDate = new Date();
+      var formattedDate = currentDate.toISOString().split('T')[0];
+      tanggalDonasiInput.value = formattedDate;
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  var tipeDonasiSelect = document.getElementById('tipe_donasi');
+  var barangDonasiFields = document.getElementById('barang_donasi_fields');
+
+  tipeDonasiSelect.addEventListener('change', function() {
+    if (tipeDonasiSelect.value === 'barang') {
+      barangDonasiFields.style.display = 'block';
+    } else {
+      barangDonasiFields.style.display = 'none';
+    }
+  });
+});
   </script>
   </body>
 </html>

@@ -23,7 +23,7 @@ $result = $conn->query($checkQuery);
 if ($result->num_rows > 0) {
     echo "already_registered";
 } else {
-    $insertQuery = "INSERT INTO calon_siswa (nama, alamat, ttl, umur,pendidikan_terakhir, no_tlp, email) VALUES ('$nama', '$alamat', '$ttl', '$umur','$pendidikan_terakhir' '$no_tlp', '$email')";
+    $insertQuery = "INSERT INTO calon_siswa (nama, alamat, ttl, umur, pendidikan_terakhir, no_tlp, email) VALUES ('$nama', '$alamat', '$ttl', '$umur', '$pendidikan_terakhir', '$no_tlp', '$email')";
     if ($conn->query($insertQuery) === true) {
         echo "Form data saved successfully";
     } else {
