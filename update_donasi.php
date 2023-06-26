@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($result) {
     // Jika pembaruan berhasil, redirect ke halaman utama atau halaman yang Anda inginkan
-    header("Location: halaman_admin.php#content2");
+    header("Location: halaman_admin.php");
     exit();
   } else {
     echo "Gagal update data.";

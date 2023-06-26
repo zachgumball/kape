@@ -274,7 +274,7 @@
                   echo "<td>" . $row['nama_barang'] . "</td>";
                   echo "<td>" . $row['jumlah_donasi'] . "</td>";
                   echo "<td>" . $row['tanggal_donasi'] . "</td>";
-                  echo '<td><button class="btn-box btn-edit2" data-id="' . $row['id_donatur'] . '">Edit</button>';
+                  echo '<td><button class="btn-box btn-edit2" data-id="' . $row['id_donatur'] . '">Edit</button><button class="btn-box btn-hapus2" data-id="' . $row['id_donatur'] . '">Hapus</button></td>';
                   echo "</tr>";
                 }
 
@@ -578,6 +578,10 @@
                     <td><input type="text" name="tipe_donasi" value="${data2.tipe_donasi}"></td>
                   </tr>
                   <tr>
+                    <td><label for="nama_barang">Nama Barang:</label></td>
+                    <td><input type="text" name="nama_barang" value="${data2.nama_barang}"></td>
+                  </tr>
+                  <tr>
                     <td><label for="jumlah_donasi">Jumlah Donasi:</label></td>
                     <td><input type="text" name="jumlah_donasi" value="${data2.jumlah_donasi}"></td>
                   </tr>
@@ -612,6 +616,25 @@
         modal2.style.display = "none";
       }
     });
+  </script>
+  <!-- Hapus data pada Table Donasi -->
+  <script>
+    var deleteButtons2 = document.getElementsByClassName("btn-hapus2");
+
+    // Tambahkan event listener untuk setiap tombol "Hapus"
+    for (var i = 0; i < deleteButtons2.length; i++) {
+      deleteButtons2[i].addEventListener("click", function() {
+        var id_donatur = this.getAttribute("data-id");
+
+        // Tampilkan prompt message konfirmasi
+        var confirmDelete2 = confirm("Apakah Anda yakin ingin menghapus data ini?");
+
+        if (confirmDelete2) {
+          // Jika pengguna mengkonfirmasi, lakukan penghapusan data
+          window2.location.href = "hapus_donasi.php?id_donatur=" + id_donatur;
+        }
+      });
+    }
   </script>
 </body>
 </html>
